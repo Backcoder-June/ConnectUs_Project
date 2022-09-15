@@ -1,0 +1,32 @@
+package connectus.reservation;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import connectus.board.BoardDAO;
+
+@Controller
+public class ReservationController {
+	
+	@Autowired
+	ReservationDAO reservationDAO; 
+	
+	@PostMapping("/board/{boardid}/reservation")
+	public ReservationDTO reservation(ReservationDTO dto) {
+		
+		
+		reservationDAO.insertReservation(dto);
+		
+		
+		
+		
+		
+		return null;
+	}
+	
+	
+	
+
+}

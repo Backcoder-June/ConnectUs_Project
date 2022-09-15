@@ -1,0 +1,71 @@
+package connectus.reservation;
+
+import org.springframework.stereotype.Component;
+
+public class ReservationDTO {
+	private String id; 
+	private String buyerId; 
+	private String sellerId; 
+	private String startRental; 
+	private String endRental; 
+	private String boardId;
+	
+	
+	
+	
+	public ReservationDTO(String id, String buyerId, String sellerId, String startRental, String endRental,
+			String boardId) {
+		super();
+		this.id = id;
+		this.buyerId = buyerId;
+		this.sellerId = sellerId;
+		this.startRental = startRental;
+		this.endRental = endRental;
+		this.boardId = boardId;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getBuyerId() {
+		return buyerId;
+	}
+	public void setBuyerId(String buyerId) {
+		this.buyerId = buyerId;
+	}
+	public String getSellerId() {
+		return sellerId;
+	}
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
+	}
+	public String getStartRental() {
+		return startRental;
+	}
+	public void setStartRental(String startRental) {
+		this.startRental = startRental;
+	}
+	public String getEndRental() {
+		return endRental;
+	}
+	public void setEndRental(String endRental) {
+		this.endRental = endRental;
+	}
+	public String getBoardId() {
+		return boardId;
+	}
+	public void setBoardId(String boardId) {
+		this.boardId = boardId;
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

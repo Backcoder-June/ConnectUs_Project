@@ -1,0 +1,53 @@
+package connectus.board;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Controller
+public class BoardController {
+	
+	
+	@Autowired
+	BoardDAO boardDAO;
+	
+	
+	@GetMapping("/")
+	public String home() {
+		return "home";
+	}
+
+	@GetMapping("/allboard")
+	public String allboard(Model model) {
+		
+		List<BoardDTO> list = boardDAO.allBoard();
+		
+		model.addAttribute("allboard", list);
+		
+		
+		return "allboard";
+	}
+	
+	
+	@GetMapping("/board/{boardid}")
+	public String oneBoard(@PathVariable("boardid")int boardid, Model model) {
+
+		
+		BoardDTO targetBoard = boardDAO.oneBoard(boardid);
+		System.out.println(targetBoard);
+		model.addAttribute("oneBoard", targetBoard);
+
+		return "oneboard";
+		
+		
+		
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.BoardDAO">
+
+
+	<!-- 전체게시물 조회 (페이징) -->
+	<select id="limitBoard" resultType="boarddto"
+			parameterType="int">
+		select * from board order by seq desc limit #{limit}, 10
+	</select>
+
+	<!-- 전체 게시물 갯수 조회 -->
+	<select id="countBoard" resultType="int">
+		select count(*) from board
+	</select>
+
+
+
+	<!-- seq 로 게시물 조회 -->
+	<select id="oneBoard" resultType="boarddto">
+		select * from board where seq = #{seq}
+	</select>
+
+	<!-- 비밀글 여부 -->
+	<select id="secretBoard" resultType="int" parameterType="int">
+		select secret from board where seq=#{seq}
+	</select>
+
+	<!-- 조회수 -->
+	<update id="viewCount" parameterType="int">
+		update board set viewcount=viewcount +1 where seq=#{seq}
+	</update>
+
+
+	<!-- 추천수 조회-->
+	<select id="likeCount" resultType="int">
+		select likeCount from board where seq = #{seq}
+	</select>
+
+
+
+
+
+
+	<!-- 게시물 저장 -->
+	<insert id="saveBoard" parameterType="boarddto">
+		insert into board (title, contents, writer, secret)
+		values(#{title}, #{contents}, #{writer}, #{secret})
+	</insert>
+
+
+	<!-- 게시물 삭제 -->
+	<delete id="deleteBoard">
+		delete from board where seq = #{seq}
+	</delete>
+
+	<!-- 게시물 수정 -->
+	<update id="editBoard">
+		update board set seq=#{seq}, title=#{title}, contents=#{contents},
+		secret=#{secret}, writingTime=#{writingTime}, viewCount=#{viewCount},
+		writer=#{writer}
+		where seq = #{seq}
+	</update>
+
+
+
+
+	<!-- 검색 -->
+	<select id="searchList" resultType="boarddto" parameterType="hashMap">
+	 	select * from board where ${item} like concat('%', #{search}, '%') order by seq
+	 </select>
+
+</mapper>

@@ -1,0 +1,9 @@
+package connectus.reservation;
+
+public class ReservationDTO {
+	private String id; 
+	private String buyerId; 
+	private String sellerId; 
+	
+
+}
