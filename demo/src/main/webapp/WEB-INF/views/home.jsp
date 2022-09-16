@@ -24,7 +24,7 @@ $(document).ready(function(){
 <br>
 <br>
 
-<a href="http://localhost:8090/registerBoard">물픔 등록</a>
+<a href="http://localhost:8090/registerBoard">물품 등록</a>
 
 
 

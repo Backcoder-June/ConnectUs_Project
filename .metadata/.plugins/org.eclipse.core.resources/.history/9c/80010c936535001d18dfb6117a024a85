@@ -1,0 +1,24 @@
+/*
+ * @(#)ApiClientTest.java $version 2017. 5. 19.
+ *
+ * Copyright 2007 NHN Corp. All rights Reserved.
+ * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+package com.nbp.ncloud.geolocation.client;
+
+import org.apache.commons.codec.net.URLCodec;
+import org.junit.Test;
+
+import java.net.URLEncoder;
+
+public class ApiClientTest {
+    private final String accessKey = "YOUR_ACCESS_KEY";
+    private final String secretKey = "YOUR_SECRECT_KEY";
+    private final String ip = "211.36.142.207";
+
+    @Test
+    public void simple() throws Exception {
+        final ApiClient apiClient = new ApiClient(accessKey, secretKey);
+        apiClient.run(ip);
+    }
+}

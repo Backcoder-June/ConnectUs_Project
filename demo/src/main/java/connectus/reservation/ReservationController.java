@@ -15,11 +15,6 @@ public class ReservationController {
 	@Autowired
 	ReservationDAO reservationDAO; 
 	
-	
-	
-
-	
-	
 	@PostMapping("/board/{boardid}/reservationinput")
 	public String reservationinput(@PathVariable("boardid")int boardid, String userid, Model model) {
 		
@@ -31,12 +26,10 @@ public class ReservationController {
 	
 	@PostMapping("/board/reservationinput")
 	public String reservation(ReservationDTO dto) {
-		
-		System.out.println(dto.getBuyerId());
-		
+
 		reservationDAO.insertReservation(dto);
 		
-		return "redirect:/board/result";
+		return "redirect:/allboard";
 	}
 	
 	@GetMapping("/board/result")

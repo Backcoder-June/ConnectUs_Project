@@ -1,0 +1,12 @@
+package connectus;
+
+public class geoapiignore {
+
+	
+	String geoaccess = "FCA40B7D9CFAF82D9B93";
+	String geosecret = "7F6650D8A245BD7544AE9A3F5004E3D098761B09";
+	String geoip = "180.65.214.244";
+	
+	
+	
+}

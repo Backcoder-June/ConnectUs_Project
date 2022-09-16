@@ -22,4 +22,6 @@
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.WebMvcConfigurer"/>
+    <fullyQualifiedTypeName name="connectus.ApiClient"/>
+    <fullyQualifiedTypeName name="connectus.geoapiignore"/>
 </qualifiedTypeNameHistroy>

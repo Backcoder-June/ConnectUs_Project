@@ -19,11 +19,12 @@ $(document).ready(function(){
 
 <form action="http://localhost:8090/board/reservationinput" method="post">
 
-buyerid : <input type="text" name="buyerId" > <br>
-sellerid : <input type="text" name="sellerId" value="${param.userId}" readonly> <br>
-startRental : <input type="text" name="startRental"> <br>
-endRental : <input type="text" name="endRental"> <br>
-boardid : <input type="text" name="boardId" value="${boardId}" readonly><br>
+번호 : <input type="text" name="boardId" value="${boardId}" readonly><br>
+렌터 : <input type="text" name="buyerId" value="렌터세션ID" readonly> <br>
+오너 : <input type="text" name="sellerId" value="${param.userId}" readonly> <br>
+커넥트시작 : <input type="text" name="startRental"> <br>
+커넥트종료 : <input type="text" name="endRental"> <br>
+희망비용 : <input type="text" name="price" >원 <br>
 <input type="submit" value="예약"> 
 
 </form>

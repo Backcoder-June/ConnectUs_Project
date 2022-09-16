@@ -8,8 +8,8 @@
 
 	<!-- 전체게시물 조회 (페이징) -->
 	<insert id="insertReservation" >
-		insert into reservation (buyerId, sellerId, startRental, endRental, boardId )
-		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId})
+		insert into reservation (buyerId, sellerId, startRental, endRental, boardId, price )
+		values (#{buyerId}, #{sellerId}, #{startRental}, #{endRental}, #{boardId}, #{price})
 	</insert>
 
 	
