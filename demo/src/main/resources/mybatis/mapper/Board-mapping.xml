@@ -22,8 +22,29 @@
 	
 	<select id="allReservation" resultType="reservationdto" >
 		select * from reservation where boardid=#{boardId} 
-	
 	</select>
+	
+	
+	<delete id="deleteBoard">
+		delete from board where id=#{boardId}
+	</delete>
 
+
+	<update id="updateBoard">
+		update board set title=#{title}, contents=#{contents},
+		img=#{img}
+		where id = #{id}
+	</update>
+	
+	
+	<!-- 검색 -->
+	<select id="searchList" resultType="boarddto" parameterType="hashMap">
+	 	select * from board where ${item} like concat('%', #{search}, '%') 
+	 	order by createdAt desc 
+	 </select>
+	
+	
+	
+	
 
 </mapper>

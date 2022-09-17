@@ -8,11 +8,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
+	
+	
+	$("#delete").on("click", function(e) {
+		 if(!confirm("게시물을 삭제하시겠습니까?")){
+				e.preventDefault();
+			} else{alert("게시물 삭제가 완료되었습니다.")}
+	}); // onclick
 
-});
+	
+	
+	
+
+});   // onload
 </script>
 
 </head>
@@ -57,6 +69,18 @@ $(document).ready(function(){
 
 <br>
 
+<form action="http://localhost:8090/board/${oneBoard.id}/delete" method="post">
+<input type="submit" value="삭제하기" id="delete">
+</form>
+<br>
+
+<form action="http://localhost:8090/board/${oneBoard.id}/update">
+<input type="submit" value="수정하기" id="update">
+</form>
+
+
+
+<br>
 <h4>신청된 Connects</h4>
 <table border=5>
 <tr>

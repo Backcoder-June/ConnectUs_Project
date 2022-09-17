@@ -7,14 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/css/main.css">    
+<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
-
-	 var current = new Date().toISOString().slice(0, 10);
-	 $("#here").html(current);
-	 
 
 });
 </script>
@@ -29,6 +25,18 @@ $(document).ready(function(){
 
 <a href="http://localhost:8090/registerBoard">물품등록</a>
 <br>
+	<!-- 검색기능 -->
+			<form action="searchboard">
+				<select name="item" style="width:80px;height: 30px; text-align: center;">
+					<option value="title">제목</option>
+					<option value="boardRegion">지역</option>
+					<option value="userId">오너이름</option>
+					<option value="contents">내용</option>
+				</select>
+			
+			  <input type="text" name="search" style="width: 250px;height: 30px; margin: 5px">
+				<input type="submit" value="검색" style="width: 80px;height: 35px;  margin: 5px">
+			</form>
 <br>
 	<table border=5>
 		<thead>
@@ -45,7 +53,7 @@ $(document).ready(function(){
 
 
 	<tr>
-   <th>${board.id}</th>
+   <th id="boardid">${board.id}</th>
    <th>
    <a href ="/board/${board.id}">${board.title} <br>
    <img alt="사진이 없어요" width=200 height=200 src="http://localhost:8090/upload/${board.img}"> <br>
@@ -53,7 +61,7 @@ $(document).ready(function(){
    </th>
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
-   <td>${board.createdAt}</td>
+   <td id="createdDate${board.id}">${board.createdAt}</td>
    </tr>
 
 

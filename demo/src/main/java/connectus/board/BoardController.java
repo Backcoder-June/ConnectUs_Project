@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -61,12 +62,15 @@ public class BoardController {
 	}
 	
 	
+	
+	//글 작성 폼 
 	@GetMapping("/registerBoard")
 	public String registerBoard() {
 		
 		return "insertBoardForm";
 	}
 	
+	// 글 작성 
 	@PostMapping("/registerBoard")
 	public String registerProcess(BoardDTO dto, MultipartFile file1) throws Exception{
 		
@@ -84,7 +88,9 @@ public class BoardController {
 			File serverfile1 = new File(savePath + newname);
 			
 			file1.transferTo(serverfile1);
+			// 파일 복사 완료 
 			
+			// dto 에 파일이름 저장 
 			dto.setImg(newname); 
 			}else {
 				dto.setImg("noimg.png");
@@ -114,6 +120,71 @@ public class BoardController {
 		
 		return "redirect:/allboard";
 	}
+	
+	
+	// 삭제 
+	@PostMapping("/board/{boardid}/delete")
+	public String deleteBoard(@PathVariable("boardid")int boardid) {
+		boardDAO.deleteBoard(boardid);
+		return "redirect:/allboard";
+	}
+	
+	
+	// 수정
+	@GetMapping("/board/{boardid}/update")
+	public String updateBoard(@PathVariable("boardid")int boardid, Model model) {
+		model.addAttribute("updateBoard", boardDAO.oneBoard(boardid));
+		return "updateBoardForm";
+	}
+
+	@PostMapping("/board/{boardid}/updateprocess")
+	public String updateBoardProcess(@PathVariable("boardid")int boardid,BoardDTO boardDTO, MultipartFile file1) throws IllegalStateException, IOException {
+		// update 할 아이디 set 
+		boardDTO.setId(boardid);
+		
+		// 이미지 다시 Set 
+		String savePath = "c:/upload/"; 
+		
+		if(!file1.isEmpty()) {
+			String originalname1 = file1.getOriginalFilename();
+			String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
+			String extname = originalname1.substring(originalname1.indexOf("."));
+			
+			String newname = onlyfilename + "(" + UUID.randomUUID().toString() + ")" + extname; 
+			
+			File serverfile1 = new File(savePath + newname);
+			file1.transferTo(serverfile1);
+			boardDTO.setImg(newname); 
+			}else {
+				boardDTO.setImg("noimg.png");
+			}
+		
+		// update 실행 
+		int updateResult = boardDAO.updateBoard(boardDTO);
+		
+		return "redirect:/allboard";
+	}
+
+	
+	
+	// 검색
+	@GetMapping("/searchboard")
+	public String searchList(String item, String search, Model model) {
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("item", item);
+		map.put("search", search);
+
+		List<BoardDTO> searchList = boardDAO.searchList(map);
+
+		model.addAttribute("searchList", searchList);
+		return "searchList";
+	}
+	
+	
+	
+	
+	
 	
 
 	//

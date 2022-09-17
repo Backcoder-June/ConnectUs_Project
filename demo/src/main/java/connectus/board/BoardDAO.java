@@ -1,5 +1,6 @@
 package connectus.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -18,6 +19,12 @@ public interface BoardDAO {
 	public int insertBoard(BoardDTO dto);
 	
 	public List<ReservationDTO> allReservation(int boardid);
+
+	public int deleteBoard(int boardid);
 	
+	public int updateBoard(BoardDTO dto);
+	
+	public List<BoardDTO> searchList(HashMap<String, String> searchType);
+
 	
 }

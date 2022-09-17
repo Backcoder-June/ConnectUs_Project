@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${path}/css/writing.css">    
 <script src="${path}/js/jquery-3.6.0.min.js" ></script>
 <script>
 $(document).ready(function(){
@@ -19,14 +20,29 @@ $(document).ready(function(){
 
 <form action="http://localhost:8090/board/reservationinput" method="post">
 
-번호 : <input type="text" name="boardId" value="${boardId}" readonly><br>
-렌터 : <input type="text" name="buyerId" value="렌터세션ID" readonly> <br>
-오너 : <input type="text" name="sellerId" value="${param.userId}" readonly> <br>
-커넥트시작 : <input type="text" name="startRental"> <br>
-커넥트종료 : <input type="text" name="endRental"> <br>
-희망비용 : <input type="text" name="price" >원 <br>
-<input type="submit" value="예약"> 
-
+<table>
+<tr>
+<th>번호 : <input type="text" name="boardId" value="${boardId}" readonly></th>
+</tr>
+<tr>
+<th>렌터 : <input type="text" name="buyerId" value="렌터세션ID" readonly></th> 
+</tr>
+<tr>
+<th>오너 : <input type="text" name="sellerId" value="${param.userId}" readonly></th> 
+</tr>
+<tr>
+<th>커넥트시작 : <input type="date" name="startRental"></th> 
+</tr>
+<tr>
+<th>커넥트종료 : <input type="date" name="endRental"></th> 
+</tr>
+<tr>
+<th>희망비용 : <input type="text" name="price" >원</th> 
+</tr>
+<tr>
+<th><input type="submit" value="예약"></th>
+</tr> 
+</table>
 </form>
 
 
