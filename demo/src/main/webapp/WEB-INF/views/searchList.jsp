@@ -61,7 +61,7 @@ $(document).ready(function(){
    </th>
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
-   <td id="createdDate${board.id}">${board.createdAt}</td>
+   <td>${board.timeDiff}</td>
    </tr>
 
 

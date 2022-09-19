@@ -28,8 +28,9 @@ public class ReservationController {
 	public String reservation(ReservationDTO dto) {
 
 		reservationDAO.insertReservation(dto);
+		long boardid = dto.getBoardId();
 		
-		return "redirect:/allboard";
+		return "redirect:/board/"+boardid;
 	}
 	
 	@GetMapping("/board/result")

@@ -26,5 +26,8 @@ public interface BoardDAO {
 	
 	public List<BoardDTO> searchList(HashMap<String, String> searchType);
 
+	public int[] timeDiff();
+	
+	public int[] searchTimeDiff(HashMap<String, String> searchType);
 	
 }

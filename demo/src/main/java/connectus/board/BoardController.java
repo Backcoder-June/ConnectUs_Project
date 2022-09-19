@@ -30,23 +30,32 @@ public class BoardController {
 	@Autowired
 	BoardDAO boardDAO;
 	
-	
+	// 홈 
 	@GetMapping("/")
 	public String home() {
 		return "home";
 	}
 
+	// 전체 물품 조회
 	@GetMapping("/allboard")
 	public String allboard(Model model) {
 		
 		List<BoardDTO> list = boardDAO.allBoard();
+	
+		//몇일 전
+		int[] timeDiff = boardDAO.timeDiff();
+		for(int i = 0; i< list.size(); i++) {
+			list.get(i).setTimeDiff(timeDiff[i]+"일전");
 		
+			if(timeDiff[i]==0) {
+				list.get(i).setTimeDiff("오늘");
+			}
+		}
 		model.addAttribute("allboard", list);
-		
 		return "allboard";
 	}
 	
-	
+	// 물품 상세페이지 
 	@GetMapping("/board/{boardid}")
 	public String oneBoard(@PathVariable("boardid")int boardid, Model model) {
 		
@@ -63,14 +72,14 @@ public class BoardController {
 	
 	
 	
-	//글 작성 폼 
+	//글작성 폼 
 	@GetMapping("/registerBoard")
 	public String registerBoard() {
 		
 		return "insertBoardForm";
 	}
 	
-	// 글 작성 
+	// 글작성 
 	@PostMapping("/registerBoard")
 	public String registerProcess(BoardDTO dto, MultipartFile file1) throws Exception{
 		
@@ -82,20 +91,14 @@ public class BoardController {
 			String originalname1 = file1.getOriginalFilename();
 			String onlyfilename = originalname1.substring(0, originalname1.indexOf("."));
 			String extname = originalname1.substring(originalname1.indexOf("."));
-			
 			String newname = onlyfilename + "(" + UUID.randomUUID().toString() + ")" + extname; 
-			
 			File serverfile1 = new File(savePath + newname);
-			
 			file1.transferTo(serverfile1);
-			// 파일 복사 완료 
-			
-			// dto 에 파일이름 저장 
-			dto.setImg(newname); 
+
+				dto.setImg(newname); 
 			}else {
 				dto.setImg("noimg.png");
 			}
-
 			
 		// 지역 이름 set 	( 이거 동네는 매번 위치를 킬 수 없으니까 회원가입할 때, 혹은 기간에 한번씩만 인증하는식으로 받아서 DTO 에 넣어두고 사용하자 )
 			ApiClient apiClient = new ApiClient(geoapiignore.geoaccess, geoapiignore.geosecret);
@@ -106,23 +109,16 @@ public class BoardController {
 			int index2 = geo.indexOf("lat");
 			
 			String region = geo.substring(index+6, index2-3);
-			
 			System.out.println(region);
-			
 			
 			dto.setBoardRegion(region); 
 			
-
-			
 		boardDAO.insertBoard(dto);
-		
-		
-		
 		return "redirect:/allboard";
 	}
 	
 	
-	// 삭제 
+	// 글삭제 
 	@PostMapping("/board/{boardid}/delete")
 	public String deleteBoard(@PathVariable("boardid")int boardid) {
 		boardDAO.deleteBoard(boardid);
@@ -130,7 +126,7 @@ public class BoardController {
 	}
 	
 	
-	// 수정
+	// 글수정
 	@GetMapping("/board/{boardid}/update")
 	public String updateBoard(@PathVariable("boardid")int boardid, Model model) {
 		model.addAttribute("updateBoard", boardDAO.oneBoard(boardid));
@@ -176,7 +172,16 @@ public class BoardController {
 		map.put("search", search);
 
 		List<BoardDTO> searchList = boardDAO.searchList(map);
-
+		
+		// 몇일전 
+		int[] timeDiff = boardDAO.searchTimeDiff(map);
+		for(int i = 0; i< searchList.size(); i++) {
+			searchList.get(i).setTimeDiff(timeDiff[i]+"일전");
+		
+			if(timeDiff[i]==0) {
+				searchList.get(i).setTimeDiff("오늘");
+			}
+		}
 		model.addAttribute("searchList", searchList);
 		return "searchList";
 	}

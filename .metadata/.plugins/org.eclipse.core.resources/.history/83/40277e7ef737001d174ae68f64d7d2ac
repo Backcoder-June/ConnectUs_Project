@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="connectus.board.BoardDAO">
+
+	<select id="allBoard" resultType="boarddto">
+		select * from board order by createdAt desc
+	</select>
+
+	<select id="oneBoard" resultType="boarddto">
+		select * from board where id = #{id}
+	</select>
+	
+	<insert id="insertBoard">
+		insert into board (userid, title, contents, boardRegion, createdAt, img) 
+		values(#{userId}, #{title}, #{contents}, #{boardRegion}, now(), #{img})
+	</insert>
+	
+	
+	<select id="allReservation" resultType="reservationdto" >
+		select * from reservation where boardid=#{boardId} 
+	</select>
+	
+	
+	<delete id="deleteBoard">
+		delete from board where id=#{boardId}
+	</delete>
+
+
+	<update id="updateBoard">
+		update board set title=#{title}, contents=#{contents},
+		img=#{img}
+		where id = #{id}
+	</update>
+	
+	
+	<!-- 검색 -->
+	<select id="searchList" resultType="boarddto" parameterType="hashMap">
+	 	select * from board where #{item} like concat('%', #{search}, '%') 
+	 	order by createdAt desc 
+	 </select>
+	
+	
+	<!-- 몇일전 조회  -->
+	<select id="timeDiff" resultType="int">
+	SELECT DATEDIFF(now(), createdAt) from board order by createdAt desc
+	</select>
+	
+	
+	<select id="searchTimeDiff" resultType="int"> 
+	SELECT DATEDIFF(now(), createdAt) from board where #{item} like concat('%', #{search}, '%') 
+	order by createdAt desc
+	</select>
+	
+	
+	
+	
+	
+
+</mapper>

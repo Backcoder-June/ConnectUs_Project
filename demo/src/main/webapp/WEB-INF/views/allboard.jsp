@@ -19,10 +19,6 @@ $(document).ready(function(){
 <body>
 <h1> ConnectUS 전체 품목 </h1>
 
-<div id="here">
-
-</div>
-
 <a href="http://localhost:8090/registerBoard">물품등록</a>
 <br>
 	<!-- 검색기능 -->
@@ -49,7 +45,7 @@ $(document).ready(function(){
 			</tr>
 		</thead>				
 	<tbody>
-<c:forEach items="${allboard}" var="board">
+<c:forEach items="${allboard}" var="board" >
 
 
 	<tr>
@@ -61,22 +57,8 @@ $(document).ready(function(){
    </th>
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
-   <td id="createdDate${board.id}">${board.createdAt}</td>
+   <td>${board.timeDiff}</td>
    </tr>
-
-
-
-
-
-<%--    <div class="box">
-	<span>${board.id}</span>
-	<span>${board.title}</span>
-	<span>${board.boardRegion}</span>
-	<span>${board.userId}</span>
-	<span>${board.createdAt}</span>
-</div>
- --%>
- 
  
 </c:forEach>
 </tbody>
@@ -85,9 +67,11 @@ $(document).ready(function(){
 <br>
 
 
-
 <br>
 <a href="http://localhost:8090/">홈으로</a>
+
+
+
 
 
 
