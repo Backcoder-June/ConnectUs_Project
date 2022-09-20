@@ -1,0 +1,83 @@
+package connectus.community;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("boardservice")
+public class CommunityService {
+	@Autowired
+	CommunityDAO dao;
+	
+	public int registerBoard(CommunityDTO dto) {
+		return dao.insertBoard(dto);
+			
+	}
+	
+	public int getTotalBoard() {
+		return dao.getCount();
+	}
+	
+	public List<CommunityDTO> paginglist(int[] limit) {
+		return dao.pagingList(limit);
+	}
+	
+	public int updateSeq(int seq) {
+		return dao.updateSeq(seq);
+	}
+	
+	public CommunityDTO getBoardSeqLst(int seq) {
+		return dao.getBoardSeqLst(seq);
+	}
+	
+	
+	public int deleteBoard(int seq) {
+		return dao.deleteBoard(seq);
+	}
+	
+	public int updateBoard(CommunityDTO dto) {
+		return dao.updateBoard(dto);
+	}
+	
+	public int getTotalTitleBoard() {
+		return dao.getTitleCount();
+	}
+	
+	public List<CommunityDTO> pagingTitlelist(int[] limit) {
+		return dao.pagingTitleList(limit);
+	}
+	
+	public int getTotalWriterBoard() {
+		return dao.getWriterCount();
+	}
+	
+	
+	public List<CommunityDTO> pagingWriterlist(int[] limit) {
+		return dao.pagingWriterList(limit);
+	}
+	
+	public List<CommunityDTO> paginglist2(int[] limit, String searchVal) {
+		return dao.pagingList2(limit,searchVal);
+	}
+	
+	public int getTotalBoard2(String searchVal) {
+		return dao.getTotalBoard2(searchVal);
+	}
+	
+	public List<CommunityDTO> pagingTitlelist2(int[] is, String searchVal) {
+		return dao.pagingTitleList2(is,searchVal);
+	}
+	
+	public int getTotalTitleBoard2(String searchVal) {
+		return dao.getTotalTitleBoard2(searchVal);
+	}
+	
+	public List<CommunityDTO> pagingWriterlist2(int[] is, String searchVal) {
+		return dao.pagingWriterlist2(is,searchVal);
+	}
+	
+	public int getTotalWriterBoard2(String searchVal) {
+		return dao.getTotalWriterBoard2(searchVal);
+	}
+}

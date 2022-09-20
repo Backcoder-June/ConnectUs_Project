@@ -8,8 +8,14 @@
 <!-- 패키지명 알리아스 주기 -->
 
 <typeAliases>
-	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
+	<typeAlias type="connectus.product.ProductDTO" alias="productdto"/>
 	<typeAlias type="connectus.reservation.ReservationDTO" alias="reservationdto"/>
+	<typeAlias type="connectus.member.MemberDTO" alias="memberdto"/>
+	
+	<typeAlias type="connectus.board.BoardDTO" alias="boarddto"/>
+	<typeAlias type="connectus.boardupload.BoardUploadDTO" alias="boarduploaddto"/>
+	
+	
 </typeAliases>
 
 

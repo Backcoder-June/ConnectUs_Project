@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import connectus.board.BoardDAO;
+import connectus.product.ProductDAO;
 
 @Controller
 public class ReservationController {
@@ -15,31 +15,24 @@ public class ReservationController {
 	@Autowired
 	ReservationDAO reservationDAO; 
 	
-	@PostMapping("/board/{boardid}/reservationinput")
+	@PostMapping("/product/{boardid}/reservationinput")
 	public String reservationinput(@PathVariable("boardid")int boardid, String userid, Model model) {
 		
 		model.addAttribute("boardId", boardid);
 		model.addAttribute("userId", userid);
-		return "reservationinput";
+		return "product/reservationinput";
 	}
 	
 	
-	@PostMapping("/board/reservationinput")
+	@PostMapping("/product/reservationinput")
 	public String reservation(ReservationDTO dto) {
 
 		reservationDAO.insertReservation(dto);
 		long boardid = dto.getBoardId();
 		
-		return "redirect:/board/"+boardid;
+		return "redirect:/product/"+boardid;
 	}
-	
-	@GetMapping("/board/result")
-	public String result() {
 		
-		return "result"; 
-	}
-	
-	
 	
 
 }
