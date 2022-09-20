@@ -29,7 +29,7 @@
     <fullyQualifiedTypeName name="connectus.product.ProductDAO"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
 </qualifiedTypeNameHistroy>
