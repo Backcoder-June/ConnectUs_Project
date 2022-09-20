@@ -42,15 +42,6 @@ public class BoardController {
 		
 		List<BoardDTO> list = boardDAO.allBoard();
 	
-		//몇일 전
-		int[] timeDiff = boardDAO.timeDiff();
-		for(int i = 0; i< list.size(); i++) {
-			list.get(i).setTimeDiff(timeDiff[i]+"일전");
-		
-			if(timeDiff[i]==0) {
-				list.get(i).setTimeDiff("오늘");
-			}
-		}
 		model.addAttribute("allboard", list);
 		return "allboard";
 	}
@@ -173,15 +164,6 @@ public class BoardController {
 
 		List<BoardDTO> searchList = boardDAO.searchList(map);
 		
-		// 몇일전 
-		int[] timeDiff = boardDAO.searchTimeDiff(map);
-		for(int i = 0; i< searchList.size(); i++) {
-			searchList.get(i).setTimeDiff(timeDiff[i]+"일전");
-		
-			if(timeDiff[i]==0) {
-				searchList.get(i).setTimeDiff("오늘");
-			}
-		}
 		model.addAttribute("searchList", searchList);
 		return "searchList";
 	}

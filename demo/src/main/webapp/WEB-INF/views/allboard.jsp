@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>      
 <!DOCTYPE html>
 <html>
@@ -34,6 +36,10 @@ $(document).ready(function(){
 				<input type="submit" value="검색" style="width: 80px;height: 35px;  margin: 5px">
 			</form>
 <br>
+
+
+
+
 	<table border=5>
 		<thead>
 			<tr>
@@ -46,6 +52,14 @@ $(document).ready(function(){
 		</thead>				
 	<tbody>
 <c:forEach items="${allboard}" var="board" >
+<fmt:parseDate value="${board.createdAt}" var="uploadDate" pattern="yyyy-MM-dd"/>
+
+<c:set var="current" value="<%=new java.util.Date()%>" />
+<fmt:formatDate value="${current}" pattern="yyyy-MM-dd" var="currentForm"/>
+<fmt:parseDate value="${currentForm}" var="now" pattern="yyyy-MM-dd" />
+
+<fmt:parseNumber value = "${ (now.time - uploadDate.time)/(1000*60*60*24)}" integerOnly="true" var="dateDiff"></fmt:parseNumber>
+
 
 
 	<tr>
@@ -57,7 +71,7 @@ $(document).ready(function(){
    </th>
    <td>${board.boardRegion}</td>
    <td>${board.userId}</td>
-   <td>${board.timeDiff}</td>
+   <td>${dateDiff}일전</td>
    </tr>
  
 </c:forEach>

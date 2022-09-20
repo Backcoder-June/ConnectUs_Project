@@ -9,7 +9,6 @@ public class BoardDTO {
 	private String boardRegion; 
 	private String createdAt;
 	private String img; 
-	private String timeDiff;
 	
 	
 	@Override
@@ -19,7 +18,7 @@ public class BoardDTO {
 	}
 	
 	public BoardDTO() {}
-	public BoardDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img, String timeDiff) {
+	public BoardDTO(long id, String userId, String title, String contents, String boardRegion, String createdAt, String img) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -28,21 +27,9 @@ public class BoardDTO {
 		this.boardRegion = boardRegion;
 		this.createdAt = createdAt;
 		this.img = img;
-		this.timeDiff = timeDiff;
 	}
 	
 	
-	
-	
-	
-	public String getTimeDiff() {
-		return timeDiff;
-	}
-
-	public void setTimeDiff(String timeDiff) {
-		this.timeDiff = timeDiff;
-	}
-
 	public String getImg() {
 		return img;
 	}

@@ -43,16 +43,6 @@
 	 </select>
 	
 	
-	<!-- 몇일전 조회  -->
-	<select id="timeDiff" resultType="int">
-	SELECT DATEDIFF(now(), createdAt) from board order by createdAt desc
-	</select>
-	
-	
-	<select id="searchTimeDiff" resultType="int"> 
-	SELECT DATEDIFF(now(), createdAt) from board where ${item} like concat('%', #{search}, '%') 
-	order by createdAt desc
-	</select>
 	
 	
 	
