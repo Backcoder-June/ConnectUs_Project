@@ -25,8 +25,8 @@ public class JasyptConfig {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         //config.setPassword("1234"); // 암호화 키
-        config.setPassword(environment.getProperty("jasypt.encryptor.password")); //runas config VM-option 용 
-        //config.setPassword(System.getenv("DB_PW"));  // jenkins 에 global properties 값으로 가져오기 
+        //config.setPassword(environment.getProperty("jasypt.encryptor.password")); //runas config VM-option 용 
+        config.setPassword(System.getenv("DB_PW"));  // jenkins 에 global properties 값으로 가져오기 
         config.setAlgorithm("PBEWithMD5AndDES"); // 알고리즘
         config.setKeyObtentionIterations("1000");
         config.setPoolSize("1");
