@@ -31,7 +31,7 @@ public class ProductController {
 	
 	
 	// 홈 
-	@GetMapping("/")
+	@GetMapping("/test")
 	public String home() {
 		return "home";
 	}
